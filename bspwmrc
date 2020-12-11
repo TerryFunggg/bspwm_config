@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# set root pointer
+xsetroot -cursor_name left_ptr
+
+# key bindings
+sxhkd &
+
+# monitor config
+/home/terryfung/.config/bspwm/my_monitor &
+
+
+# panel
+#tint2 &
+
+# Set some bsp specific stuff
+#bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
+#bspc monitor HDMI1 -d I II III IV V VI VII VIII IX X
+bspc monitor HDMI1 -d 1 2 3 4 5 6 7
+bspc monitor eDP1 -d  8 9 10
+
+bspc config window_gap 12
+bspc config border_width 1
+
+bspc config split_ratio 0.62
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+
+bspc config pointer_modifier mod1
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+
+#test
+bspc config click_to_focus true
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+#bspc config merge_overlapping_monitors true
+
+# wallpaper
+#exec feh --bg-scale /home/terryfung/.wallpapers/forest-outline.png
+nitrogen --random --set-scaled --head=0 /home/terryfung/.wallpapers
+if [[ $(xrandr --query | grep 'HDMI1') = *connected* ]]; then
+	nitrogen --random --set-scaled --head=1 /home/terryfung/.wallpapers
+fi
+
+# polybar
+/home/terryfung/.config/polybar/launch.sh
