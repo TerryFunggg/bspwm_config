@@ -40,7 +40,7 @@ bspc config remove_unplugged_monitors true
 # wallpaper
 #exec feh --bg-scale /home/terryfung/.wallpapers/forest-outline.png
 nitrogen --random --set-scaled --head=0 /home/terryfung/.wallpapers
-if [[ $(xrandr --query | grep 'HDMI1') = *connected* ]]; then
+if [ $(xrandr --query | grep 'HDMI1') = *connected* ]; then
 	nitrogen --random --set-scaled --head=1 /home/terryfung/.wallpapers
 fi
 
