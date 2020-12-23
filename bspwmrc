@@ -18,7 +18,7 @@ if [[ $need_dual_monitor -eq 0 ]]; then
 	nitrogen --random --set-scaled /home/terryfung/.wallpapers
 else
 	/home/terryfung/.config/bspwm/my_monitor
-	bspc monitor HDMI3 -d 1 2 3 4 5 6 7
+	bspc monitor HDMI1 -d 1 2 3 4 5 6 7
 	bspc monitor eDP1 -d  8 9 10
 	nitrogen --random --set-scaled --head=0 /home/terryfung/.wallpapers
 	nitrogen --random --set-scaled --head=1 /home/terryfung/.wallpapers
