@@ -6,18 +6,23 @@ xsetroot -cursor_name left_ptr
 # key bindings
 sxhkd &
 
-# monitor config
-/home/terryfung/.config/bspwm/my_monitor &
-
-
 # panel
 #tint2 &
 
-# Set some bsp specific stuff
-#bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
-#bspc monitor HDMI1 -d I II III IV V VI VII VIII IX X
-bspc monitor HDMI1 -d 1 2 3 4 5 6 7
-bspc monitor eDP1 -d  8 9 10
+need_dual_monitor = 0
+
+if [[ $need_dual_monitor -eq 0 ]]; then
+	/home/terryfung/.screenlayout/home.sh 
+	bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
+	bspc monitor HDMI1 -d I II III IV V VI VII VIII IX X
+	nitrogen --random --set-scaled /home/terryfung/.wallpapers
+else
+	/home/terryfung/.config/bspwm/my_monitor
+	bspc monitor HDMI3 -d 1 2 3 4 5 6 7
+	bspc monitor eDP1 -d  8 9 10
+	nitrogen --random --set-scaled --head=0 /home/terryfung/.wallpapers
+	nitrogen --random --set-scaled --head=1 /home/terryfung/.wallpapers
+fi
 
 bspc config window_gap 12
 bspc config border_width 1
@@ -39,10 +44,6 @@ bspc config remove_unplugged_monitors true
 
 # wallpaper
 #exec feh --bg-scale /home/terryfung/.wallpapers/forest-outline.png
-nitrogen --random --set-scaled --head=0 /home/terryfung/.wallpapers
-if [ $(xrandr --query | grep 'HDMI1') = *connected* ]; then
-	nitrogen --random --set-scaled --head=1 /home/terryfung/.wallpapers
-fi
 
 # polybar
-/home/terryfung/.config/polybar/launch.sh
+/home/terryfung/.config/polybar/launch.sh &
